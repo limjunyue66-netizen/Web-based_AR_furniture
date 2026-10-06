@@ -1,0 +1,32 @@
+# FORMA AR Furniture — Apache config (XAMPP + cPanel compatible)
+
+Options -Indexes
+
+# Do not force HTTPS on localhost / XAMPP. Enable HTTPS via hosting when deployed.
+
+<IfModule mod_mime.c>
+  AddType model/gltf-binary .glb
+  AddType model/gltf+json .gltf
+  AddType model/vnd.usdz+zip .usdz
+  AddType image/webp .webp
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(glb|gltf|usdz)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|svg|jpg|jpeg|png|webp)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Optional: uncomment on production with a valid SSL certificate
+  # RewriteCond %{HTTPS} !=on
+  # RewriteCond %{HTTP_HOST} !^localhost [NC]
+  # RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>

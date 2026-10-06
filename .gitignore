@@ -1,0 +1,41 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# Local secrets / environment (never commit real credentials)
+config/config.php
+config/config.local.php
+config/config.cpanel.php
+config/config.production.php
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Uploaded / generated runtime assets (keep folder structure via .gitkeep)
+uploads/thumbs/*
+!uploads/thumbs/.gitkeep
+!uploads/thumbs/.htaccess
+
+# Ignore large / user-uploaded 3D models (regenerate samples with tools/generate_sample_glbs.php)
+models/*
+!models/.htaccess
+!models/.gitkeep
+
+# Temp / tools output
+tools/_*.php
+tools/_*.txt
+sql/_hash.txt
+sql/.admin_seed_ok
+
+# Local tooling (PortableGit, etc.)
+.tools/
